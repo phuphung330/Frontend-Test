@@ -33,11 +33,12 @@ Start the server
 
 ## Screenshots
  1.Logic Test
- ![App Screenshot](snap_1.png)
+ ![](snap_1.png)
+  
  2.App Development Test.
  ![App Screenshot](snap_2.jpeg)
 
-
+ 
 ## Tech Stack
 
 **Client:** React, Ant Design, TailwindCSS,Moment.
