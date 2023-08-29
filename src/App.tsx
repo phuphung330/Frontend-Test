@@ -22,6 +22,7 @@ const MyTable = () => {
     const newKey = [...newSelectedRowKeys];
     setSelectedRowKeys(newKey);
   };
+
   const [editingRow, setEditingRow] = useState('');
   const hasSelected = selectedRowKeys.length > 0;
   const [form] = Form.useForm();
@@ -116,6 +117,7 @@ const MyTable = () => {
       dataIndex: "action",
       render: (_, record: data) => {
         const editable = isEditing(record)
+
         return (
           <>
             <EditOutlined onClick={() => {
@@ -135,10 +137,22 @@ const MyTable = () => {
     },
   ];
 
+
   const handleDelete = (record: data) => {
+
     setDataSource((prevData) => prevData.filter((New) => New.id !== record.id));
     message.success('Deleted User Success!')
-    setSelectedRowKeys([])
+
+    setSelectedRowKeys((prevSeletedRowKeys: React.Key[]) => {
+      const newSelectedRowKeyss = [...prevSeletedRowKeys]
+      const index = newSelectedRowKeyss.indexOf(record.id);
+      if (index !== -1) {
+        newSelectedRowKeyss.splice(index, 1)
+      }
+      return newSelectedRowKeyss;
+    })
+
+
   }
   const handleDeleteAll = () => {
     setDataSource((prevData) => prevData.filter((New) => !selectedRowKeys.includes(New.id)));
